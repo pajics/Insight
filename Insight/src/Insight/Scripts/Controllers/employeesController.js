@@ -9,6 +9,6 @@
 
     function employeesController($scope, Employees) {
         $scope.title = 'employees overview';
-        $scope.employess = Employees.query();
+        $scope.employees = Employees.query();
     }
 })();
