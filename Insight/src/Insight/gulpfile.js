@@ -1,10 +1,11 @@
-﻿var gulp = require('gulp');
+﻿//todo: fix gulp config
+var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 
 gulp.task('compress', function () {
     gulp.src('Scripts/**/*.js')
       .pipe(uglify())
-      .pipe(gulp.dest('wwwroot/app.js'))
+      .pipe(gulp.dest('wwwroot'))
 });
 
 gulp.task('watch', function () {

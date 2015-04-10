@@ -15,11 +15,16 @@ namespace Insight.API.Controllers
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
-            return new Employee[]
-                {
+            try {
+                return new Employee[]
+                    {
                    new Employee { FirstName = "Srdjan", LastName = "Pajic" },
                    new Employee { FirstName = "Jelena", LastName = "Stankov" }
-                };
+                    };
+            }catch(Exception e)if(e.Message.Contains( "test"))
+            {
+                throw e;
+            }
         }
 
         // GET api/values/5
