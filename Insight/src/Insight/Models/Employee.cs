@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace DAL.Model
+namespace Insight.Models
 {
     public class Employee
     {
