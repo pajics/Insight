@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using DAL.Interfaces;
+using DAL.Model;
 using Microsoft.AspNet.Mvc;
-using Insight.Models;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace Insight.API.Controllers
+namespace Insight.Controllers
 {
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
+        [FromServices]
+        public IEmployeeRepository EmployeeRepository { get; set; }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
-            try {
-                return new Employee[]
-                    {
-                   new Employee { FirstName = "Srdjan", LastName = "Pajic" },
-                   new Employee { FirstName = "Jelena", LastName = "Stankov" }
-                    };
-            }catch(Exception e)if(e.Message.Contains( "test"))
+            try
+            {
+                return EmployeeRepository.GetAll();
+            }
+            catch (Exception e) when (e.Message.Contains("test"))
             {
                 throw e;
             }
