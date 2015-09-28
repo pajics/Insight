@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNet.Mvc;
-using Insight.Core.Entities;
 using Insight.Core;
+using Insight.Core.Entities;
+using Microsoft.AspNet.Mvc;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,12 +20,12 @@ namespace Insight.API.Controllers
             {
                 var query = new EmployeeQueries();
                 var m1 = query.GetAll();
-                var m2 = query.GetAllSkills();
-                var m3 = query.GetEmployeesGrouppedByInitial();
-                var m4 = query.GetEmployeesBy(l => l.Where(e => e.DisplayName.Length > 10).ToList());
-                return m4;
+                //var m2 = query.GetAllSkills();
+                //var m3 = query.GetEmployeesGrouppedByInitial();
+                //var m4 = query.GetEmployeesBy(l => l.Where(e => e.DisplayName.Length > 10).ToList());
+                return m1;
             }
-            catch (Exception e) if (e.Message.Contains("Null"))
+            catch (Exception e) when (e.Message.Contains("Null"))
             {
                 //throw e;
             }

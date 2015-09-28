@@ -2,19 +2,9 @@
 using System.Collections.Generic;
 using Insight.Core.Entities;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Runtime.Serialization;
 
 namespace Insight.Core
 {
-    public class MySer : ISerializable
-    {
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            throw new NotImplementedException();
-        }
-    }
     public class EmployeeQueries
     {
         public List<Employee> GetAll()
@@ -127,8 +117,6 @@ namespace Insight.Core
 
         public List<Employee> GetEmployeesBy(Func<List<Employee>,List<Employee>> filter)
         {
-            Thread.Sleep(3000);
-            //Task.Delay(3000);
             return filter(GetAll());
         }
     }
