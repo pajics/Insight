@@ -9,10 +9,10 @@
 
     function EmployeesController($scope, Employees) {
         $scope.title = 'Employees overview';
-        $scope.employees = Employees.getAll();
-        //$scope.employees = [
-        //            { firstName: 'Srdjan', lastName: 'Pajic', role: 'Software developer', profileImageUrl: 'web/images/img2.jpg' },
-        //            { firstName: 'Jelena', lastName: 'Stankov', role: 'Software developer', profileImageUrl: 'web/images/img1.jpg' },
-        //];
+        //$scope.employees = Employees.query
+        $scope.employees = [
+                    { firstName: 'Srdjan', lastName: 'Pajic', role: 'Software developer', profileImageUrl: 'web/images/img2.jpg' },
+                    { firstName: 'Jelena', lastName: 'Stankov', role: 'Software developer', profileImageUrl: 'web/images/img1.jpg' },
+        ];
     }
 })();

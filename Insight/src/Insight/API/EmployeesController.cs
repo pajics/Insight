@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Insight.Core;
+using Insight.Core.Entities;
 using Microsoft.AspNet.Mvc;
-using Insight.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,16 +16,24 @@ namespace Insight.API.Controllers
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
-            try {
-                return new Employee[]
-                    {
-                   new Employee { FirstName = "Srdjan", LastName = "Pajic" },
-                   new Employee { FirstName = "Jelena", LastName = "Stankov" }
-                    };
-            }catch(Exception e)if(e.Message.Contains( "test"))
+            try
             {
-                throw e;
+                var query = new EmployeeQueries();
+                var m1 = query.GetAll();
+                //var m2 = query.GetAllSkills();
+                //var m3 = query.GetEmployeesGrouppedByInitial();
+                //var m4 = query.GetEmployeesBy(l => l.Where(e => e.DisplayName.Length > 10).ToList());
+                return m1;
             }
+            catch (Exception e) when (e.Message.Contains("Null"))
+            {
+                //throw e;
+            }
+            catch (Exception e)
+            {
+                //throw e;
+            }
+            return new List<Employee>();
         }
 
         // GET api/values/5
