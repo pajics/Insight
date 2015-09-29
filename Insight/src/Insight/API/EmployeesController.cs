@@ -12,14 +12,19 @@ namespace Insight.API.Controllers
     [Route("api/[controller]")]
     public class EmployeesController : Controller
     {
+        private readonly EmployeeQueries _employeeQueries;
+        public EmployeesController(EmployeeQueries employeeQueries)
+        {
+            _employeeQueries = employeeQueries;
+        }
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
             try
             {
-                var query = new EmployeeQueries();
-                var m1 = query.GetAll();
+                var m1 = _employeeQueries.GetAll();
                 //var m2 = query.GetAllSkills();
                 //var m3 = query.GetEmployeesGrouppedByInitial();
                 //var m4 = query.GetEmployeesBy(l => l.Where(e => e.DisplayName.Length > 10).ToList());

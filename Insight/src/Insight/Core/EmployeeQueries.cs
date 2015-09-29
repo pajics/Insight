@@ -34,13 +34,12 @@ namespace Insight.Core
                     Skills = skills
                 });
             employees.Add(
-                new Employee {
-                    FirstName = "Erika",
-                    LastName = "Kuskova",
+                new Employee
+                {
+                    FirstName = "Carlos",
+                    LastName = "Pascual",
                     Role = "Software Developer",
-                    Skills = skills,
-                    AdditionalRoles = new List<EmployeeRole>{ specRole }
-
+                    Skills = skills
                 });
             employees.Add(
                 new Employee
@@ -63,6 +62,15 @@ namespace Insight.Core
             employees.Add(
                 new Employee
                 {
+                    FirstName = "Georg",
+                    LastName = "Pfeiffer",
+                    Role = "Software Developer",
+                    Skills = skills
+
+                });
+            employees.Add(
+                new Employee
+                {
                     FirstName = "Josef",
                     LastName = "Heidegger",
                     Role = "Software Developer",
@@ -72,17 +80,18 @@ namespace Insight.Core
             employees.Add(
                 new Employee
                 {
-                    FirstName = "Jelena",
-                    LastName = "Stankov",
+                    FirstName = "Erika",
+                    LastName = "Kuskova",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    AdditionalRoles = new List<EmployeeRole> { specRole }
 
                 });
             employees.Add(
                 new Employee
                 {
-                    FirstName = "Georg",
-                    LastName = "Pfeiffer",
+                    FirstName = "Jelena",
+                    LastName = "Stankov",
                     Role = "Software Developer",
                     Skills = skills
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Insight.Core;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Http;
@@ -26,12 +27,20 @@ namespace Insight
                 opt.OutputFormatters.Remove(outputToRemove);
                 opt.OutputFormatters.Insert(0, jsonOutputFormatter);
             });
+
+            RegisterServices(services);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
             app.UseMvc();
+        }
+
+        //http://blogs.msdn.com/b/webdev/archive/2014/06/17/dependency-injection-in-asp-net-vnext.aspx
+        private void RegisterServices(IServiceCollection services)
+        {
+            services.AddScoped<EmployeeQueries, EmployeeQueries>();
         }
     }
 }
