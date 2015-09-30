@@ -14,6 +14,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Insight
@@ -44,20 +45,11 @@ namespace Insight
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
-            //services.AddMvc().Configure<MvcOptions>(opt =>
-            //{
-            //    opt.InputFormatters.Clear();
-
-            //    var jsonOutputFormatter = new JsonOutputFormatter();
-
-            //    jsonOutputFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            //    jsonOutputFormatter.SerializerSettings.DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore;
-
-            //    var outputToRemove = opt.OutputFormatters.FirstOrDefault(formatter => formatter.GetType() == typeof(JsonOutputFormatter)) as JsonOutputFormatter;
-            //    opt.OutputFormatters.Remove(outputToRemove);
-            //    opt.OutputFormatters.Insert(0, jsonOutputFormatter);
-            //});
+            services.AddMvc().AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                opt.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
+            });
 
             RegisterServices(services);
         }
@@ -65,18 +57,18 @@ namespace Insight
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             // Add the following to the request pipeline only in development environment.
-            //if (env.IsDevelopment())
-            //{
-            //    //app.UseBrowserLink();
-            //    app.UseErrorPage();
-            //    app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
-            //}
-            //else
-            //{
-            //    // Add Error handling middleware which catches all application specific errors and
-            //    // sends the request to the following path or controller action.
-            //    app.UseErrorHandler("/Home/Error");
-            //}
+            if (env.IsDevelopment())
+            {
+                //app.UseBrowserLink();
+                app.UseErrorPage();
+                app.UseDatabaseErrorPage(DatabaseErrorPageOptions.ShowAll);
+            }
+            else
+            {
+                // Add Error handling middleware which catches all application specific errors and
+                // sends the request to the following path or controller action.
+                app.UseErrorHandler("/Home/Error");
+            }
 
             // Add static files to the request pipeline.
             app.UseStaticFiles();
