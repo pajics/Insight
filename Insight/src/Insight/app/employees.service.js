@@ -9,7 +9,7 @@ function Employees($resource, $http) {
     var employeesServicesObj = {};
     var employees = $resource('/api/employees/:id');
     employeesServicesObj.getAll = function () {
-        return employees.query();
+        return employees.query().$promise;
     }
 
     return employeesServicesObj;
