@@ -9,8 +9,6 @@ namespace Insight.Core
     {
         public List<Employee> GetAll()
         {
-            var devRole = new EmployeeRole { Name = "Software developer" };
-            var specRole = new EmployeeRole { Name = "Head of .NET Female Department" };
             //var skills = new List<Skill>()
             //{
             //    [0] = new Skill { Name = "C#" },
@@ -31,7 +29,8 @@ namespace Insight.Core
                     FirstName = "Srdjan",
                     LastName = "Pajic",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    ProfileImageUrl = "img2.jpg"
                 });
             employees.Add(
                 new Employee
@@ -39,7 +38,8 @@ namespace Insight.Core
                     FirstName = "Carlos",
                     LastName = "Pascual",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    ProfileImageUrl = "img2.jpg"
                 });
             employees.Add(
                 new Employee
@@ -47,7 +47,8 @@ namespace Insight.Core
                     FirstName = "Janko",
                     LastName = "Medjugorac",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    ProfileImageUrl = "img2.jpg"
 
                 });
             employees.Add(
@@ -56,7 +57,8 @@ namespace Insight.Core
                     FirstName = "Dmitry",
                     LastName = "Popov",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    ProfileImageUrl = "img2.jpg"
 
                 });
             employees.Add(
@@ -65,7 +67,8 @@ namespace Insight.Core
                     FirstName = "Georg",
                     LastName = "Pfeiffer",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    ProfileImageUrl = "img2.jpg"
 
                 });
             employees.Add(
@@ -74,7 +77,8 @@ namespace Insight.Core
                     FirstName = "Josef",
                     LastName = "Heidegger",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    ProfileImageUrl = "img2.jpg"
 
                 });
             employees.Add(
@@ -84,8 +88,7 @@ namespace Insight.Core
                     LastName = "Kuskova",
                     Role = "Software Developer",
                     Skills = skills,
-                    AdditionalRoles = new List<EmployeeRole> { specRole }
-
+                    ProfileImageUrl = "img3.jpg"
                 });
             employees.Add(
                 new Employee
@@ -93,7 +96,8 @@ namespace Insight.Core
                     FirstName = "Jelena",
                     LastName = "Stankov",
                     Role = "Software Developer",
-                    Skills = skills
+                    Skills = skills,
+                    ProfileImageUrl = "img1.jpg"
 
                 });
             employees.Add(

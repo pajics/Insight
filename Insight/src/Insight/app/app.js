@@ -1,9 +1,11 @@
 ﻿'use strict';
 
+require('./libs/prototypes.js');
+
 angular.module('insightApp', [
     'ngResource'
 ]);
 
 
-require('./employeesService.js');
-require('./employeesController.js');
+require('./employees.service.js');
+require('./employees.ctrl.js');
