@@ -195,3 +195,4 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 Insight/Insight.sln.ide/
+Insight/src/Insight/wwwroot/app.js
