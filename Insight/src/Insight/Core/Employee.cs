@@ -21,12 +21,13 @@ namespace Insight.Core.Entities
 
         public string Company { get; set; }
         public string Username { get; set; }
-        public DateTime? TimestampCreated { get; set; }
-        public string Mail { get; set; }
+        public DateTime TimestampCreated { get; set; }
+        public string Email { get; set; }
         public byte[] Thumbnail { get; set; }
         public int LogonCount { get; set; }
         public string Department { get; set; }
         public string Description { get; set; }
+        public DateTime TimestampModified { get; set; }
     }
 
     public enum Gender

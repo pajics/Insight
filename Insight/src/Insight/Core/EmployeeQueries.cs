@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using Insight.Core.Entities;
 using System.DirectoryServices;
+using System.IO;
 using System.Linq;
+using Insight.Core.Identity;
 
 namespace Insight.Core
 {
     public class EmployeeQueries
     {
+        private readonly InsightContext _context;
+
+        public EmployeeQueries(InsightContext context)
+        {
+            _context = context;
+        }
+
+
         public List<Employee> GetAll()
         {
             //var skills = new List<Skill>()
@@ -121,38 +131,59 @@ namespace Insight.Core
 
         public List<Employee> GetEmployees()
         {
-            var employees = new List<Employee>();
-
-            string path = "LDAP://LAN";
-            DirectoryEntry dEntry = new DirectoryEntry(path);
-            DirectorySearcher dSearcher = new DirectorySearcher(dEntry);
-
-            //This line applies a filter to the search specifying a username to search for
-            //modify this line to specify a user name. if you want to search for all
-            //users who start with k - set SearchString to "k"
-            dSearcher.Filter = "(&(objectClass=user)(objectcategory=Person))";
-
-            //perform search on active directory
-            SearchResultCollection domainUsers = dSearcher.FindAll();
-            foreach (SearchResult domainUser in domainUsers)
+            try
             {
-                var employee = new Employee()
-                {
-                    FirstName = GetPropertyValue(domainUser, "givenname"),
-                    LastName = GetPropertyValue(domainUser, "sn"),
-                    Username = GetPropertyValue(domainUser, "samaccountname"),
-                    //LogonCount = int.Parse(GetPropertyValue(domainUser, "logoncount")),
-                    TimestampCreated = (DateTime?)GetPropertyObject(domainUser, "whencreated"),
-                    //Thumbnail = (byte[])GetPropertyObject(domainUser, "thumbnailphoto"),
-                    Company = GetPropertyValue(domainUser, "company"),
-                    Mail = GetPropertyValue(domainUser, "mail"),
-                    Department = GetPropertyValue(domainUser, "department"),
-                    Description = GetPropertyValue(domainUser, "description"),
-                };
+                var employees = new List<Employee>();
 
-                employees.Add(employee);
+                string path = "LDAP://LAN";//set your organisation domain
+                DirectoryEntry dEntry = new DirectoryEntry(path);
+                DirectorySearcher dSearcher = new DirectorySearcher(dEntry);
+
+                //This line applies a filter to the search specifying a username to search for
+                //modify this line to specify a user name. if you want to search for all
+                //users who start with k - set SearchString to "k"
+                dSearcher.Filter = "(&(objectClass=user)(objectcategory=Person))";
+                var x = AppDomain.CurrentDomain.GetData("DataDirectory").ToString();
+                var u = AppDomain.CurrentDomain.BaseDirectory;
+                //perform search on active directory
+                SearchResultCollection domainUsers = dSearcher.FindAll();
+                foreach (SearchResult domainUser in domainUsers)
+                {
+                    var employee = new Employee()
+                    {
+                        FirstName = GetPropertyValue(domainUser, "givenname"),
+                        LastName = GetPropertyValue(domainUser, "sn"),
+                        Username = GetPropertyValue(domainUser, "samaccountname"),
+                        //LogonCount = int.Parse(GetPropertyValue(domainUser, "logoncount")),
+                        TimestampCreated = (DateTime) GetPropertyObject(domainUser, "whencreated"),
+                        //Thumbnail = (byte[])GetPropertyObject(domainUser, "thumbnailphoto"),
+                        Company = GetPropertyValue(domainUser, "company"),
+                        Email = GetPropertyValue(domainUser, "mail"),
+                        Department = GetPropertyValue(domainUser, "department"),
+                        Description = GetPropertyValue(domainUser, "description"),
+                    };
+
+                    if (employee.Thumbnail != null)
+                    {
+                        //var subdir = $@"images\profile\{employee.Username}";
+                        employee.ProfileImageUrl = $"profile/{employee.Username}/thumb.jpg";
+                        //if (!Directory.Exists($@"C:\Projects\Insight\Insight\src\Insight\wwwroot\{subdir}"))
+                        //{
+                        //    Directory.CreateDirectory($@"C:\Projects\Insight\Insight\src\Insight\wwwroot\{subdir}");
+                        //}
+                        //File.WriteAllBytes($@"C:\Projects\Insight\Insight\src\Insight\wwwroot\{employee.ProfileImageUrl}", employee.Thumbnail);
+                    }
+                    employees.Add(employee);
+                    //_context.Employees.Add(employee);
+                }
+                //_context.SaveChanges();
+                return employees;
             }
-            return employees;
+            catch (Exception ex)
+            {
+                
+            }
+            return new List<Employee>();
         }
 
         private string GetPropertyValue(SearchResult result, string propertyName)

@@ -15,6 +15,7 @@ using Microsoft.Dnx.Runtime;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace Insight
@@ -34,23 +35,23 @@ namespace Insight
             // Add Entity Framework services to the services container.
             services.AddEntityFramework()
                 .AddSqlServer()
-                .AddDbContext<ApplicationDbContext>(options =>
+                .AddDbContext<InsightContext>(options =>
                 {
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]);
                 });
 
 
             // Add Identity services to the services container.
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            //services.AddIdentity<User, IdentityRole>()
+            //    .AddEntityFrameworkStores<InsightContext>()
+            //    .AddDefaultTokenProviders();
 
             services.AddMvc().AddJsonOptions(opt =>
             {
                 opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                opt.SerializerSettings.Converters.Add(new StringEnumConverter());
                 opt.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
             });
-
             RegisterServices(services);
         }
 
