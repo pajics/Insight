@@ -16,7 +16,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
-    <DevelopmentServerPort>1419</DevelopmentServerPort>
+    <DevelopmentServerPort>1455</DevelopmentServerPort>
+    <IISExpressAnonymousAuthentication>Disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>Enabled</IISExpressWindowsAuthentication>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <ProduceOutputsOnBuild>False</ProduceOutputsOnBuild>

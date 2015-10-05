@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Insight.Core.Entities;
+using System.DirectoryServices;
 using System.Linq;
 
 namespace Insight.Core
@@ -118,6 +119,61 @@ namespace Insight.Core
             return employees;
         }
 
+        public List<Employee> GetEmployees()
+        {
+            var employees = new List<Employee>();
+
+            string path = "LDAP://LAN";
+            DirectoryEntry dEntry = new DirectoryEntry(path);
+            DirectorySearcher dSearcher = new DirectorySearcher(dEntry);
+
+            //This line applies a filter to the search specifying a username to search for
+            //modify this line to specify a user name. if you want to search for all
+            //users who start with k - set SearchString to "k"
+            dSearcher.Filter = "(&(objectClass=user)(objectcategory=Person))";
+
+            //perform search on active directory
+            SearchResultCollection domainUsers = dSearcher.FindAll();
+            foreach (SearchResult domainUser in domainUsers)
+            {
+                var employee = new Employee()
+                {
+                    FirstName = GetPropertyValue(domainUser, "givenname"),
+                    LastName = GetPropertyValue(domainUser, "sn"),
+                    Username = GetPropertyValue(domainUser, "samaccountname"),
+                    //LogonCount = int.Parse(GetPropertyValue(domainUser, "logoncount")),
+                    TimestampCreated = (DateTime?)GetPropertyObject(domainUser, "whencreated"),
+                    //Thumbnail = (byte[])GetPropertyObject(domainUser, "thumbnailphoto"),
+                    Company = GetPropertyValue(domainUser, "company"),
+                    Mail = GetPropertyValue(domainUser, "mail"),
+                    Department = GetPropertyValue(domainUser, "department"),
+                    Description = GetPropertyValue(domainUser, "description"),
+                };
+
+                employees.Add(employee);
+            }
+            return employees;
+        }
+
+        private string GetPropertyValue(SearchResult result, string propertyName)
+        {
+            var props = result.Properties[propertyName];
+            if (props.Count > 0)
+            {
+                return props[0].ToString();
+            }
+            return string.Empty;
+        }
+
+        private object GetPropertyObject(SearchResult result, string propertyName)
+        {
+            var props = result.Properties[propertyName];
+            if (props.Count > 0)
+            {
+                return props[0];
+            }
+            return null;
+        }
         public List<string> GetAllSkills()
         {
             return GetAll().SelectMany(e => e.Skills).Select(s => s.Name).ToList();

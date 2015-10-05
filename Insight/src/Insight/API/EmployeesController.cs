@@ -24,7 +24,7 @@ namespace Insight.API.Controllers
         {
             try
             {
-                var m1 = _employeeQueries.GetAll();
+                var m1 = _employeeQueries.GetEmployees();
                 //var m2 = query.GetAllSkills();
                 //var m3 = query.GetEmployeesGrouppedByInitial();
                 //var m4 = query.GetEmployeesBy(l => l.Where(e => e.DisplayName.Length > 10).ToList());

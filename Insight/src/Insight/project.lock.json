@@ -1601,6 +1601,18 @@
           "lib/net45/_._": {}
         }
       },
+      "System.DirectoryServices.Linq/1.2.2.1": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "System.DirectoryServices"
+        ],
+        "compile": {
+          "lib/net45/System.DirectoryServices.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.DirectoryServices.Linq.dll": {}
+        }
+      },
       "System.IO/4.0.0": {
         "type": "package",
         "compile": {
@@ -3173,6 +3185,24 @@
         "System.Diagnostics.Debug.nuspec"
       ]
     },
+    "System.DirectoryServices.Linq/1.2.2.1": {
+      "type": "package",
+      "sha512": "4a9V5INRSMpEsE+80yN3tZNk3kQHgeFwOlvVqM57ddWPHVPqlP7Mwc8CAm3NHerJS7FJDG9INLaVzIvPiWExtA==",
+      "files": [
+        "lib/net35/System.DirectoryServices.Linq.dll",
+        "lib/net35/System.DirectoryServices.Linq.pdb",
+        "lib/net35/System.DirectoryServices.Linq.xml",
+        "lib/net40/System.DirectoryServices.Linq.dll",
+        "lib/net40/System.DirectoryServices.Linq.pdb",
+        "lib/net40/System.DirectoryServices.Linq.xml",
+        "lib/net45/System.DirectoryServices.Linq.dll",
+        "lib/net45/System.DirectoryServices.Linq.pdb",
+        "lib/net45/System.DirectoryServices.Linq.xml",
+        "System.DirectoryServices.Linq.1.2.2.1.nupkg",
+        "System.DirectoryServices.Linq.1.2.2.1.nupkg.sha512",
+        "System.DirectoryServices.Linq.nuspec"
+      ]
+    },
     "System.IO/4.0.0": {
       "type": "package",
       "sha512": "MoCHQ0u5n0OMwUS8OX4Gl48qKiQziSW5cXvt82d+MmAcsLq9OL90+ihnu/aJ1h6OOYcBswrZAEuApfZha9w2lg==",
@@ -3687,6 +3717,7 @@
       "Microsoft.Framework.Configuration >= 1.0.0-beta7",
       "Microsoft.Framework.Configuration.EnvironmentVariables >= 1.0.0-beta7",
       "Microsoft.Framework.Configuration.Json >= 1.0.0-beta7",
+      "System.DirectoryServices.Linq >= 1.2.2.1",
       "AutoMapper >= 4.0.0-alpha1"
     ],
     "DNX,Version=v4.5.1": []

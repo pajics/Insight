@@ -18,6 +18,15 @@ namespace Insight.Core.Entities
         public List<EmployeeRole> AdditionalRoles { get; set; } = new List<EmployeeRole>();
 
         public Gender Gender { get; set; }
+
+        public string Company { get; set; }
+        public string Username { get; set; }
+        public DateTime? TimestampCreated { get; set; }
+        public string Mail { get; set; }
+        public byte[] Thumbnail { get; set; }
+        public int LogonCount { get; set; }
+        public string Department { get; set; }
+        public string Description { get; set; }
     }
 
     public enum Gender
