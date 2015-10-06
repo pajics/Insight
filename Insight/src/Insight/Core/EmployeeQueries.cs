@@ -5,6 +5,7 @@ using System.DirectoryServices;
 using System.IO;
 using System.Linq;
 using Insight.Core.Identity;
+using Microsoft.Data.Entity;
 
 namespace Insight.Core
 {
@@ -131,15 +132,15 @@ namespace Insight.Core
 
         public List<Employee> GetEmployees()
         {
-            try
+            var employees = _context.Employees.AsNoTracking().ToList();
+            foreach (var employee in employees)
             {
-                return _context.Employees.ToList();
+                if (string.IsNullOrEmpty(employee.ProfileImageUrl))
+                {
+                    employee.ProfileImageUrl = employee.Gender == Gender.Female ? "female.jpg" : "male.png";
+                }
             }
-            catch (Exception ex)
-            {
-                
-            }
-            return new List<Employee>();
+            return employees;
         }
         public List<string> GetAllSkills()
         {
