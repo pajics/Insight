@@ -101,15 +101,21 @@
                             <div class="post-basic-info">
                                 <h3><a href="#">{{employee.displayName}}</a></h3>
                                 <span><a href="#"><label> </label>{{employee.department}}</a></span>
-                                <span><a href="#">{{employee.role}}</a></span>
-                                <p>{{employee.skills.joinProperties('name', ', ')}}...</p>
+                                <span><a ng-href="mailto:{{employee.email}}">{{employee.email}}</a></span>
+                                <span>{{employee.role}}</span>
+                                <p>{{employee.skills.joinProperties('name', ', ')}}</p>
                             </div>
                             <div class="post-info-rate-share">
                                 <div class="rateit">
-                                    <span> </span>
+                                    <span>{{employee.company}}</span>
                                 </div>
-                                <a href="https://www.facebook.com/" target="_new">
+                                <a ng-href="https://www.facebook.com/{{employee.facebookUrl}}" target="_new">
                                     <div class="post-share">
+                                        <span> </span>
+                                    </div>
+                                </a>
+                                <a ng-href="https://www.linkedin.com/{{employee.linkedinUrl}}" target="_new">
+                                    <div class="post-share-ln">
                                         <span> </span>
                                     </div>
                                 </a>

@@ -204,13 +204,23 @@ a.boxclose{
 	-moz-border-radius:30em;
 	-o-border-radius:30em;
 }
+.post-share-ln span{
+	background:url(../images/linkedin.png) no-repeat 0px 0px;
+	height:26px;
+	width:26px;
+	display:inline-block;
+	border-radius:30em;
+	-webkit-border-radius:30em;
+	-moz-border-radius:30em;
+	-o-border-radius:30em;
+}
 .post-share span:hover{
 	background:url(../images/facebookh.png) no-repeat 0px 0px;
 }
 .rateit span{
 	height:18px;
 	width:76px;
-	background:url(../images/start-rate.png) no-repeat 0px 0px; 
+	/*background:url(../images/start-rate.png) no-repeat 0px 0px;*/ 
 	display:inline-block;
 }
 .rateit span:hover{
@@ -266,6 +276,10 @@ a.boxclose{
 	margin: 0.18em 0 0 1em;
 }
 .post-share{
+	float:right;
+	margin-right:1.5em;
+}
+.post-share-ln{
 	float:right;
 	margin-right:1.5em;
 }
