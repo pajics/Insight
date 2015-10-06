@@ -100,7 +100,7 @@
                     <!-- These are our grid blocks -->
                     <!--onclick="location.href='single-page.html';"-->
                     <li ng-repeat="employee in employees">
-                        <img src="http://localhost:1419/images/{{employee.profileImageUrl}}" width="200" height="200">
+                        <img src="/images/{{employee.profileImageUrl}}" width="192">
                         <div class="post-info">
                             <div class="post-basic-info">
                                 <h3><a href="#">{{employee.displayName}}</a></h3>
@@ -112,9 +112,11 @@
                                 <div class="rateit">
                                     <span> </span>
                                 </div>
-                                <div class="post-share">
-                                    <span> </span>
-                                </div>
+                                <a href="https://www.facebook.com/" target="_new">
+                                    <div class="post-share">
+                                        <span> </span>
+                                    </div>
+                                </a>
                                 <div class="clear"> </div>
                             </div>
                         </div>
